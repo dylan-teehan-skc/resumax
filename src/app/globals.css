@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* === Colors === */
+  --color-obsidian: #0a0a0a;
+  --color-neon-green: #00ff8c;
+  --color-neon-green-hover: #00e67e;
+  --color-neon-green-10: rgba(0, 255, 140, 0.1);
+  --color-neon-green-30: rgba(0, 255, 140, 0.3);
+  --color-neon-green-50: rgba(0, 255, 140, 0.5);
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass-border-hover: rgba(255, 255, 255, 0.2);
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #9ca3af;
+  --color-text-muted: #6b7280;
+  --color-text-faint: #4b5563;
+  --color-terminal-red: #ff5f56;
+  --color-terminal-yellow: #ffbd2e;
+  --color-terminal-green: #27c93f;
+  --color-blue-glow: rgba(59, 130, 246, 0.1);
+
+  /* === Fonts === */
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-headline: "Space Grotesk", sans-serif;
+
+  /* === Spacing === */
+  --spacing-section: 8rem;
+  --spacing-card: 2.5rem;
+  --spacing-card-sm: 2rem;
+
+  /* === Border Radius === */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2.5rem;
+  --radius-full: 9999px;
+
+  /* === Shadows === */
+  --shadow-neon: 0 0 20px rgba(0, 255, 140, 0.2);
+  --shadow-neon-lg: 0 0 40px rgba(0, 255, 140, 0.3);
+  --shadow-neon-xl: 0 0 50px rgba(0, 255, 140, 0.3);
+  --shadow-neon-inset: inset 0 0 20px rgba(0, 255, 140, 0.1);
+  --shadow-logo: 0 0 15px rgba(0, 255, 140, 0.4);
+
+  /* === Z-Index === */
+  --z-background: 0;
+  --z-content: 10;
+  --z-header: 50;
+  --z-glow: -1;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* === Base === */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-obsidian);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+}
+
+/* === Grid Overlay === */
+.grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+}
+
+/* === Glassmorphism === */
+.glass-card {
+  background: var(--color-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+/* === Ticker === */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-ticker {
+  display: flex;
+  width: max-content;
+  animation: ticker 20s linear infinite;
+}
+.animate-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* === Focus Ring (Accessibility) === */
+:focus-visible {
+  outline: 2px solid var(--color-neon-green);
+  outline-offset: 2px;
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ticker {
+    animation: none;
+  }
 }
