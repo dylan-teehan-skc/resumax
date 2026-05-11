@@ -53,6 +53,11 @@
 }
 
 /* === Base === */
+html {
+  /* True zoom-out: makes the whole page render as if browser zoom were ~85% */
+  zoom: 0.85;
+}
+
 body {
   background-color: var(--color-obsidian);
   color: var(--color-text-primary);
